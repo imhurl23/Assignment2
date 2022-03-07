@@ -1,19 +1,21 @@
 #ifndef FrameSequence_H
 #define FrameSequence_H
 
+namespace HRLISA004 {
 class FrameSequence
 {
 private:
-std::vector<unsigned char **> imageSequence;
-
+std::vector<unsigned char **> imageSequence; // stores each extracted frame image as a dynamically allocated unsigned char array
+int width; 
+int height; 
+int x1, y1, x2, y2;
+setFrameSize(width, height);
 
 public:
-Matrix(void) {rows = cols = 0; space = NULL; }
-Matrix(int r, int c);
-Matrix();
-int GetRowSize(void){ return rows;}
-int GetColSize(void){ return cols;}
-double g(int i, int j);
-void s(int i, int j, double val);
-};
+
+FrameSequence(void); // default constructor 
+~FrameSequence(); // destructor 
+setFrameSize(int width, int height);
+
+}; }
 #endif
