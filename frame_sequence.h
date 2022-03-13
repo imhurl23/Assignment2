@@ -9,13 +9,16 @@ std::vector<unsigned char **> imageSequence; // stores each extracted frame imag
 int width; 
 int height; 
 int x1, y1, x2, y2;
-setFrameSize(width, height);
 
 public:
 
 FrameSequence(void); // default constructor 
 ~FrameSequence(); // destructor 
-setFrameSize(int width, int height);
+void setFrameSize(int width, int height);
+int getWidth();
+int getHeight();
+std::vector<int> getCoords();
+void writeFrame(unsigned char **);
+void writeFrames();
 
 }; }
-#endif

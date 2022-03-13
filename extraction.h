@@ -4,9 +4,8 @@
 namespace HRLISA004 {
 
 	//function to read through commend lines and get the width and height of the pgm referenced by imgfile ptr 
-	std::tuple<int, int> parseHeaderInfo(std::ifstream & imgfileptr);
+	unsigned char ** parseHeaderInfo(std::ifstream & imgfileptr);
+	std::string writeToFile(unsigned char **);
 
-	//function to get 
-	unsigned char ** getBinaryData(std::ifstream & imgfileptr);
  }
 #endif

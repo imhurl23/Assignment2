@@ -23,8 +23,8 @@ int main(int argc, char *argv[]){
 	if (!imgfile) {
 	std::cerr << "File open failed!" << std::endl;
 	} 
-	std::tuple<int, int> dims = HRLISA004::parseHeaderInfo(imgfile);
-	std::cout <<  std::get<0>(dims) << "," <<  std::get<1>(dims) << std::endl;
+	unsigned char ** img = HRLISA004::parseHeaderInfo(imgfile);
+	
 
 	
 
