@@ -23,15 +23,15 @@ int main(int argc, char *argv[]){
 	if (!imgfile) {
 	std::cerr << "File open failed!" << std::endl;
 	} 
+	std::tuple<int, int> dims = HRLISA004::parseHeaderInfo(imgfile);
+	std::cout <<  std::get<0>(dims) << "," <<  std::get<1>(dims) << std::endl;
 
-	HRLISA004::parseHeaderInfo(imgfile);
-	
 	
 
 	return 0;}
 
 
- std::tuple<int, int> HRLISA004::parseHeaderInfo(std::ifstream & imgfileptr){
+ 	unsigned char ** HRLISA004::parseHeaderInfo(std::ifstream  & imgfileptr){
 	char array[100];
 	std::string str;
 
@@ -51,9 +51,25 @@ int main(int argc, char *argv[]){
 	iss >> width >> std::ws; 
 	iss >> height >> std::ws;
 	std::cout << width <<  "," << height << std::endl;
-	return std::make_tuple(width,height);
+	
 
+	unsigned char ** img = new unsigned char* [height];
+	char * buffer = new char [width*height];
+	imgfileptr.read((char *)buffer, width*height);
+	// std::cout << &buffer[0][0] << std::endl;
+
+
+	for (int row = 0; row < height; row++){
+		img[row] = new unsigned char [width];
+		for (int col = 0; col < width; col++ ){
+			int place = row * width + col; 
+			img[row][col] = buffer[place];	
+		}
+	}
+	
+	return img;
 }
+
 
 
 
